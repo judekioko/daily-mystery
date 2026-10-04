@@ -8,7 +8,8 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(here, "..");
 const resultsFile = path.join(root, "data", "results.json");
 
-const LAUNCH_UTC = Date.UTC(2026, 9, 5);
+// Override with LAUNCH_DATE=YYYY-MM-DD to fast-forward the calendar while testing.
+const LAUNCH_UTC = Date.parse(process.env.LAUNCH_DATE ?? "2026-10-05");
 const DAY_MS = 86_400_000;
 
 interface Result {

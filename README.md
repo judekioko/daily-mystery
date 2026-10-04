@@ -4,7 +4,7 @@ One case a day, the same for everyone worldwide. Read the evidence, answer the q
 
 - **Stack:** TypeScript, Node, Express. Plain web client (PWA-ready), no build step.
 - **Run:** `npm install && npm start` → http://localhost:3000
-- **Cases:** `src/cases.ts`. Case number = days since 2026-10-05 (UTC); cases cycle until more are written.
+- **Cases:** 3 built-in in `src/cases.ts` + approved ones in `data/cases/approved/` (6 total). Case number = days since 2026-10-05 (UTC); cases cycle. Test the calendar with `LAUNCH_DATE=2026-09-25 npm start`.
 - **Anti-cheat basics:** solutions stay on the server; the client only learns "N of M correct".
 - **Scores:** 1000 − 2/sec − 150/wrong guess (min 100). Anonymous; stored in `data/results.json`.
 

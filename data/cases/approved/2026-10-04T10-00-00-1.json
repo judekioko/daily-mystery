@@ -1,0 +1,22 @@
+{
+  "case": {
+    "title": "The Empty Hook",
+    "brief": "Wednesday morning, a $48,000 painting is missing from Gallery 3. The guard is certain it was stolen overnight. Yet the alarm never went off and the door was never forced. Who took it, and how?",
+    "evidence": [
+      { "type": "log", "title": "Gallery 3 door log", "time": "Tue 18:20 – Wed 07:44", "body": "Tue 18:20 Dr. Ines Varga out. Tue 18:52 Marco (guard) out after rounds. Tue 19:30 door sealed. No entries until Wed 07:31: Paul Osei (Conservation) in. Wed 07:44 Paul out." },
+      { "type": "log", "title": "Alarm panel, Gallery 3", "time": "Tue 19:30 – Wed 07:44", "body": "Tue 19:30 armed by Marco. No events overnight. Wed 07:31 disarmed, code 1190 (Conservation team). Wed 07:44 re-armed, code 1190." },
+      { "type": "statement", "title": "Marco, night guard", "time": "Wed 07:55", "body": "I started my shift at 07:55 and 'Blue Harbor' was gone, just the empty hook. Nobody told me anything. This has to be a theft!" },
+      { "type": "document", "title": "Object transfer form", "time": "Tue", "body": "Object: 'Blue Harbor'. Destination: Conservation Lab (cleaning). Collection: Wed 07:30. Authorised: Dr. Ines Varga (Curator). Collected by: Paul Osei. Copy 2 (Security): not delivered." },
+      { "type": "message", "title": "Ines → Paul", "time": "Tue 18:25", "body": "Blue Harbor is crated beside the hook, ready for you first thing. I'll let Security know in the morning." },
+      { "type": "log", "title": "Camera system", "time": "Wed 03:10 – 03:40", "body": "All cameras offline for a scheduled firmware update. Restored 03:40, no faults." },
+      { "type": "note", "title": "Insurance schedule", "body": "'Blue Harbor', valued $48,000. Conservation transfers are covered when documented on a signed transfer form." }
+    ],
+    "questions": [
+      { "q": "What happened to the painting?", "options": ["Stolen overnight by an intruder", "Hidden by the night guard", "Sold off by the director", "Moved to the conservation lab by authorised staff"], "answer": 3 },
+      { "q": "Who authorised the painting's removal?", "options": ["Dr. Ines Varga, the curator", "Paul Osei, the conservator", "Marco, the guard", "The insurer"], "answer": 0 },
+      { "q": "Which evidence is a red herring?", "options": ["The 07:31 alarm disarm with code 1190", "The signed transfer form", "The camera outage at 03:10", "Ines's message to Paul"], "answer": 2 }
+    ],
+    "explanation": "Nothing entered Gallery 3 between 19:30 and 07:31, and the alarm logged no events overnight, so there was no overnight theft. At 07:31 Paul Osei disarmed the alarm with the Conservation code and left 13 minutes later. The transfer form, authorised by Dr. Ines Varga, shows the painting was collected for cleaning; she planned to tell Security 'in the morning' but Marco's shift hadn't started. The 03:10 camera outage is a red herring because no door or alarm event happened during it."
+  },
+  "meta": { "theme": "museum 'theft' solved from access logs", "authorModel": "claude-sonnet-5-5 (in-session, logic hand-verified)", "generatedAt": "2026-10-04T10:00:00Z" }
+}

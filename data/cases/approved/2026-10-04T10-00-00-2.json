@@ -1,0 +1,21 @@
+{
+  "case": {
+    "title": "Room 12 Twice",
+    "brief": "Leila and Jonas arrive at Hotel Aurora on the same night, both holding a confirmation for a Deluxe Double. The front desk says only one of them has a room. Leila insists she booked first. Who is right?",
+    "evidence": [
+      { "type": "document", "title": "Leila's confirmation (TravelNest)", "time": "Jan 9", "body": "Deluxe Double, 14–16 Mar, $110/night. Status at time of booking: PENDING PAYMENT. Contact email: leila.m@oldmail.com." },
+      { "type": "log", "title": "TravelNest payment log", "time": "Jan 9 – Jan 10", "body": "Jan 9 14:02 card ending 4412 verified ($1 hold). Jan 10 09:00 charge of $220 DECLINED: card expired 12/25. Notices sent to leila.m@oldmail.com (3 attempts, no reply)." },
+      { "type": "log", "title": "Hotel booking system", "time": "Jan 17", "body": "Reservation LM-4471 (Leila M.) auto-cancelled: unpaid after 7 days. Room released to inventory." },
+      { "type": "document", "title": "Jonas's confirmation (booked direct)", "time": "Jan 20", "body": "Deluxe Double, 14–16 Mar, $95/night, special web rate. Paid in full by card. Status: CONFIRMED." },
+      { "type": "message", "title": "Leila to the front desk", "time": "Mar 14", "body": "I switched to leila.mwangi@mailbox.com in December and haven't opened my old inbox since. I booked first, in January, and I never got a single warning!" },
+      { "type": "note", "title": "Front desk note", "time": "Mar 14", "body": "Hotel is fully booked tonight. The only Deluxe Double is the one held for Jonas." }
+    ],
+    "questions": [
+      { "q": "Who holds a valid reservation?", "options": ["Leila, because she booked first", "Both, and the hotel overbooked", "Neither", "Jonas"], "answer": 3 },
+      { "q": "Why was Leila never warned that her booking was failing?", "options": ["The notices went to an email address she no longer used", "The hotel never sent any notice", "Her card was never charged", "Jonas intercepted them"], "answer": 0 },
+      { "q": "Which detail played no part in Leila losing her room?", "options": ["Her card had expired", "The auto-cancel on Jan 17", "Jonas's booking being cheaper ($95 vs $110)", "The warnings going to the old email"], "answer": 2 }
+    ],
+    "explanation": "Leila's January booking was never paid: the $220 charge was declined on Jan 10 because her card had expired in December. The warnings went to leila.m@oldmail.com, an address she had stopped checking, so the hotel auto-cancelled on Jan 17 and released the room. Jonas booked on Jan 20 and paid in full, so his reservation is the only valid one. His cheaper rate is a red herring; it didn't cause the cancellation."
+  },
+  "meta": { "theme": "travel mishap where two bookings conflict", "authorModel": "claude-sonnet-5-5 (in-session, logic hand-verified)", "generatedAt": "2026-10-04T10:00:00Z" }
+}

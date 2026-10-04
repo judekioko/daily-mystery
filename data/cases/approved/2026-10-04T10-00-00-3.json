@@ -1,0 +1,21 @@
+{
+  "case": {
+    "title": "Payment Sent",
+    "brief": "Daniel is selling his bike for $400. The buyer, Kofi, is outside, says he has already paid, and sends a screenshot as proof. He wants to ride off right now. Daniel's gut says something's off.",
+    "evidence": [
+      { "type": "message", "title": "Kofi → Daniel", "time": "14:08", "body": "Sent! Screenshot attached, it shows completed. I'm outside, parking is limited, bring the bike down quick." },
+      { "type": "photo", "title": "Screenshot attached to the 14:08 message", "body": "Banking app screen. 'Transfer Completed'. $400.00 to Daniel Okora. Ref: TX-48210937. Time: 14:05. The phone's status bar clock reads 14:41." },
+      { "type": "document", "title": "Daniel's bank profile", "body": "Account holder name: Daniel Okoro." },
+      { "type": "log", "title": "Daniel's incoming transfers", "time": "14:00 – 14:50", "body": "No incoming transfers. Last credit: $62.00 on Tuesday. Real earlier receipt: 'Ref: TX-5520184736'." },
+      { "type": "document", "title": "Bank notice", "body": "Instant transfers arrive within 60 seconds. Transfer references are 'TX-' followed by 10 digits. A screenshot is not proof of payment." },
+      { "type": "note", "title": "The listing", "body": "Road bike, $400, price firm. Posted 3 days ago, 11 enquiries, 2 offers below asking." }
+    ],
+    "questions": [
+      { "q": "Has Daniel actually received the $400?", "options": ["Yes, it shows as completed", "It's pending and will arrive soon", "Part of it arrived", "No"], "answer": 3 },
+      { "q": "How many separate inconsistencies does the screenshot contain?", "options": ["Four", "One", "Three", "Two"], "answer": 2 },
+      { "q": "What should Daniel do before handing over the bike?", "options": ["Hand it over, since the screenshot says completed", "Wait until the money shows in his own bank account", "Let Kofi take it and settle later", "Ask Kofi to re-send the screenshot"], "answer": 1 }
+    ],
+    "explanation": "Instant transfers land within 60 seconds, yet Daniel's account shows nothing between 14:00 and 14:50, so no money arrived. The screenshot has three flaws: the name is 'Okora', not 'Okoro'; the reference has 8 digits instead of the bank's 10; and the status-bar clock reads 14:41 on a screenshot sent at 14:08. The amount, $400, matches the asking price, so it isn't a flaw. A screenshot proves nothing, so Daniel should wait until the funds appear in his own account."
+  },
+  "meta": { "theme": "marketplace scam with a forged payment screenshot", "authorModel": "claude-sonnet-5-5 (in-session, logic hand-verified)", "generatedAt": "2026-10-04T10:00:00Z" }
+}
