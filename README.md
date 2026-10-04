@@ -47,3 +47,12 @@ The same `public/` web client is wrapped in native shells (`android/`, `ios/`). 
 `npm run icons` regenerates every icon/splash from `assets/icon.svg`. After any change in `public/`, run `npm run mobile:sync`.
 
 **App Store risk:** Apple can reject apps that are just a website in a wrapper (guideline 4.2). Before submitting, add genuinely native value, e.g. a daily local notification when the new case drops (`@capacitor/local-notifications`), haptics, and offline caching of the current case.
+
+## Daily reminder (native apps)
+`public/notify.js` schedules local notifications ("🕵️ Case #N is live") through `@capacitor/local-notifications`. No server or push service is involved.
+- The player opts in after their first solve (or via the 🔔 button) and picks a time; permission is requested only then.
+- The app plans the next 14 days at once and re-plans every time it opens or a case is solved, so a reminder for an already-solved case never fires. With an active streak the text becomes "Keep your N-day streak alive".
+- Case numbers come from `window.LAUNCH_DATE` in `public/config.js`: keep it equal to the server's `LAUNCH_DATE` (default 2026-10-05).
+- Notifications are scheduled inexact on Android, and the plugin's `SCHEDULE_EXACT_ALARM` permission is removed in `AndroidManifest.xml` (Google Play restricts it to alarm/calendar apps). Expect delivery within a few minutes of the chosen time.
+- The bell and prompt only appear inside the native shell. On the web build there is no reminder UI.
+- Android 13+ and iOS ask for notification permission at opt-in; if denied, the panel tells the player to enable it in system settings.

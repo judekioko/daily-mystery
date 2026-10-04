@@ -101,6 +101,7 @@ function renderCase(c) {
     store.set(`done-${c.number}`, out);
     if (c.isToday) bumpStreak(c.number);
     renderResult(c, out);
+    document.dispatchEvent(new Event("case-solved"));
     window.scrollTo(0, 0);
   };
 }
@@ -127,6 +128,7 @@ function renderResult(c, r) {
         <button id="copy">Share result</button>
         <button class="ghost" id="archive">Play an earlier case</button>
       </div>
+      <div id="notify-slot"></div>
       <div class="explain"><strong>What really happened</strong><p>${esc(r.explanation)}</p></div>
     </div>`;
   document.getElementById("copy").onclick = async (e) => {
@@ -137,6 +139,7 @@ ${shareUrl(c)}`;
     if (navigator.share) { try { await navigator.share({ text: full }); return; } catch {} }
     try { await navigator.clipboard.writeText(full); e.target.textContent = "Copied!"; } catch {}
   };
+  document.dispatchEvent(new Event("result-rendered"));
   document.getElementById("archive").onclick = () => {
     const n = Math.max(1, c.number - 1);
     location.href = `/?case=${n}`;

@@ -1,0 +1,10 @@
+<!-- Monochrome magnifying-glass status-bar icon (Android tints and masks notification icons). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M10,2a8,8 0,1 0,4.9,14.3l5.4,5.4 1.4,-1.4 -5.4,-5.4A8,8 0,0 0,10,2zM10,4.5a5.5,5.5 0,1 1,0 11,5.5 5.5,0 0,1 0,-11z" />
+</vector>

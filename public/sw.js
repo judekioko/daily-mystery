@@ -1,6 +1,6 @@
 // App-shell cache so the page opens instantly and offline; the API always goes to the network.
-const CACHE = "dm-shell-v1";
-const SHELL = ["/", "/style.css", "/app.js", "/config.js", "/manifest.webmanifest"];
+const CACHE = "dm-shell-v2";
+const SHELL = ["/", "/style.css", "/app.js", "/config.js", "/notify.js", "/manifest.webmanifest"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)));

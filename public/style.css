@@ -34,3 +34,13 @@ h2 { font-size: 18px; margin: 28px 0 8px; }
 .share { white-space: pre; background: var(--card); border: 1px dashed var(--line); border-radius: 12px; padding: 14px; margin: 16px auto; display: inline-block; text-align: left; }
 .explain { text-align: left; background: var(--card); border-left: 3px solid var(--good); padding: 12px 14px; border-radius: 6px; margin-top: 16px; }
 .row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+.bell { padding: 6px 10px; font-size: 18px; margin-left: 8px; }
+.nudge { display: flex; flex-direction: column; gap: 10px; text-align: left; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px; margin: 16px 0; }
+.panel-backdrop { position: fixed; inset: 0; background: #000a; display: flex; align-items: flex-end; justify-content: center; z-index: 10; }
+.panel { background: var(--card); width: 100%; max-width: 680px; border-radius: 16px 16px 0 0; padding: 20px 16px calc(20px + env(safe-area-inset-bottom)); border: 1px solid var(--line); }
+.panel h2 { margin-top: 0; }
+.row-between { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 14px 0; }
+input[type=time] { background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font-size: 16px; }
+
+.streak { margin-left: auto; }
