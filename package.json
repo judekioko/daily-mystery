@@ -6,9 +6,12 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "start": "tsx src/server.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "generate": "tsx src/generator/generate.ts",
+    "approve": "tsx src/generator/approve.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.131.0",
     "express": "^5.2.1"
   },
   "devDependencies": {

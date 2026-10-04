@@ -2,7 +2,7 @@ import express from "express";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { cases } from "./cases.js";
+import { loadAllCases } from "./store.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(here, "..");
@@ -37,8 +37,10 @@ function saveResult(r: Result) {
 }
 
 // Cases cycle until the content pipeline supplies a fresh one per day.
+// Approved cases are re-read on every request so `npm run approve` goes live without a restart.
 function caseFor(n: number) {
-  return cases[(n - 1) % cases.length];
+  const all = loadAllCases();
+  return all[(n - 1) % all.length];
 }
 
 const app = express();
