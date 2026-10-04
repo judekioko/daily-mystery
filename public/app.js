@@ -1,3 +1,4 @@
+const API = window.API_BASE || "";
 const view = document.getElementById("view");
 const ICONS = { message: "💬", log: "📟", receipt: "🧾", statement: "🗣️", photo: "📷", note: "📝", document: "📄" };
 const params = new URLSearchParams(location.search);
@@ -25,7 +26,7 @@ function bumpStreak(caseNo) {
 
 async function init() {
   renderStreak();
-  const res = await fetch(`/api/case/${wanted}`);
+  const res = await fetch(`${API}/api/case/${wanted}`);
   if (!res.ok) { view.innerHTML = "<p>Case not found.</p>"; return; }
   const c = await res.json();
   const done = store.get(`done-${c.number}`, null);
@@ -84,7 +85,7 @@ function renderCase(c) {
   solveBtn.onclick = async () => {
     solveBtn.disabled = true;
     const seconds = Math.floor((Date.now() - started) / 1000);
-    const r = await fetch(`/api/case/${c.number}/solve`, {
+    const r = await fetch(`${API}/api/case/${c.number}/solve`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ answers, seconds, wrong }),
@@ -102,6 +103,12 @@ function renderCase(c) {
     renderResult(c, out);
     window.scrollTo(0, 0);
   };
+}
+
+// Shared links must point at the public site, never at the app's local capacitor:// origin.
+function shareUrl(c) {
+  const base = window.SHARE_BASE || window.API_BASE || location.origin;
+  return `${base}/?case=${c.number}`;
 }
 
 function shareText(c, r) {
@@ -123,7 +130,10 @@ function renderResult(c, r) {
       <div class="explain"><strong>What really happened</strong><p>${esc(r.explanation)}</p></div>
     </div>`;
   document.getElementById("copy").onclick = async (e) => {
-    const full = `${text}\n${location.origin}/?case=${c.number}`;
+    const full = `${text}
+${shareUrl(c)}`;
+    const nativeShare = window.Capacitor?.Plugins?.Share;
+    if (nativeShare) { try { await nativeShare.share({ text: full }); return; } catch {} }
     if (navigator.share) { try { await navigator.share({ text: full }); return; } catch {} }
     try { await navigator.clipboard.writeText(full); e.target.textContent = "Copied!"; } catch {}
   };

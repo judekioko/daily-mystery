@@ -4,7 +4,10 @@
 }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
-#app { max-width: 680px; margin: 0 auto; padding: 0 16px 64px; }
+#app { max-width: 680px; margin: 0 auto; padding: env(safe-area-inset-top) max(16px, env(safe-area-inset-right)) calc(64px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); }
+button, .opt { -webkit-tap-highlight-color: transparent; }
+body { -webkit-user-select: none; user-select: none; }
+.ev .body, .explain, .brief { -webkit-user-select: text; user-select: text; }
 header { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--line); }
 .logo { font-weight: 700; letter-spacing: .02em; }
 .streak { color: var(--accent); font-size: 14px; }

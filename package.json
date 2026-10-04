@@ -8,15 +8,27 @@
     "start": "tsx src/server.ts",
     "typecheck": "tsc --noEmit",
     "generate": "tsx src/generator/generate.ts",
-    "approve": "tsx src/generator/approve.ts"
+    "approve": "tsx src/generator/approve.ts",
+    "schedule": "tsx src/generator/schedule-cli.ts",
+    "icons": "node assets/make-icons.mjs && capacitor-assets generate --android --ios --iconBackgroundColor #0d1117 --splashBackgroundColor #0d1117",
+    "mobile:sync": "node assets/check-api-base.mjs && cap sync",
+    "mobile:android": "npm run mobile:sync && cap open android",
+    "mobile:ios": "npm run mobile:sync && cap open ios"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.131.0",
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/core": "^8.5.2",
+    "@capacitor/ios": "^8.5.2",
+    "@capacitor/share": "^8.0.3",
     "express": "^5.2.1"
   },
   "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.5.2",
     "@types/express": "^5.0.6",
     "@types/node": "^26.6.4",
+    "sharp": "^0.35.5",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
   }

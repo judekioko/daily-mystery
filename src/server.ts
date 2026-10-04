@@ -2,7 +2,7 @@ import express from "express";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { loadAllCases } from "./store.js";
+import { caseForDay } from "./schedule.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(here, "..");
@@ -37,15 +37,27 @@ function saveResult(r: Result) {
   fs.writeFileSync(resultsFile, JSON.stringify(all));
 }
 
-// Cases cycle until the content pipeline supplies a fresh one per day.
-// Approved cases are re-read on every request so `npm run approve` goes live without a restart.
+// Day → case comes from the append-only schedule (src/schedule.ts), so history never shifts.
 function caseFor(n: number) {
-  const all = loadAllCases();
-  return all[(n - 1) % all.length];
+  return caseForDay(n).case;
 }
 
 const app = express();
 app.use(express.json());
+
+// The native apps load from capacitor://localhost (iOS) and https://localhost (Android) and call this API cross-origin.
+const allowedOrigins = new Set(["capacitor://localhost", "https://localhost", "http://localhost", ...(process.env.ALLOWED_ORIGINS?.split(",") ?? [])]);
+app.use("/api", (req, res, next) => {
+  const origin = req.headers.origin;
+  if (origin && allowedOrigins.has(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+    res.setHeader("Vary", "Origin");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  }
+  if (req.method === "OPTIONS") return res.sendStatus(204);
+  next();
+});
 app.use(express.static(path.join(root, "public")));
 
 app.get("/api/case/:n", (req, res) => {

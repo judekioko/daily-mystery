@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" fill="#0d1117"/>
+  <circle cx="440" cy="440" r="230" fill="none" stroke="#f0b429" stroke-width="64"/>
+  <circle cx="440" cy="440" r="150" fill="#161b22"/>
+  <text x="440" y="505" font-family="Georgia, serif" font-size="210" font-weight="700" fill="#f0b429" text-anchor="middle">?</text>
+  <line x1="610" y1="610" x2="820" y2="820" stroke="#f0b429" stroke-width="80" stroke-linecap="round"/>
+</svg>
